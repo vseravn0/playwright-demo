@@ -1,0 +1,30 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: app.Dockerfile
+    container_name: app
+    ports:
+      - 5170:5170
+      - 5175:5175
+    volumes:
+      - ./:/app
+    tty: true
+
+  e2e:
+    build:
+      context: .
+      dockerfile: e2e.Dockerfile
+    depends_on:
+      - app
+    container_name: e2e
+    environment:
+      - E2E_PORT=9320
+      - E2E_TEST_URL=host.docker.internal
+    ports:
+      - 9320:9320
+      - 9323:9323
+    volumes:
+      - ./:/app
+    tty: true
+
