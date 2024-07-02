@@ -24,10 +24,10 @@ case "$1" in
         docker compose exec app sh -c 'npm run build && npx serve -s -n dist -p 5175'
     ;;
     "test")
-        docker compose exec e2e bash -c 'npx playwright test'
+        docker compose exec e2e sh -c 'npx playwright test > dev/null'
     ;;
     "report")
-        docker compose exec e2e bash -c 'npx playwright show-report --host 0.0.0.0'
+        docker compose exec e2e sh -c 'npx playwright show-report --host 0.0.0.0'
     ;;
     "quick")
         docker compose up -d &&

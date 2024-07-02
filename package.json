@@ -5,10 +5,11 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsxrf",
     "serve": "serve -s dist",
     "serve:build": "npm run build && npm run serve",
-    "report": "npx playwright show-report"
+    "report": "npx playwright show-report",
+    "prepare": "husky"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -26,7 +27,12 @@
     "eslint": "8.57.0",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-react-refresh": "0.4.6",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
     "typescript": "5.2.2",
     "vite": "5.2.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": ["docker compose exec e2e sh -c 'npx playwright test'","npm run lint"]
   }
 }
