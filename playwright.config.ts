@@ -3,7 +3,7 @@ import 'dotenv/config';
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
-  reporter: [['html', { host: '0.0.0.0' }]],
+  reporter: [ ['html', { open: 'never' }] ],
   use: {
     trace: 'on-first-retry',
     ignoreHTTPSErrors: true,
